@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Patient{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID Id;
+    private UUID id;
 
     @NotNull
     private String name;
@@ -24,7 +24,7 @@ public class Patient{
     @NotNull
     @Email
     @Column(unique = true)
-    private String Email;
+    private String email;
 
     @NotNull
     private String address;

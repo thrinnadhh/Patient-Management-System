@@ -68,4 +68,6 @@ public class PatientRequestDto {
     public void setRegisteredDate(String registeredDate) {
         this.registeredDate = registeredDate;
     }
+
+
 }

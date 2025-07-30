@@ -5,10 +5,12 @@ import com.projects.patientservice.DTOs.PatientResponseDto;
 import com.projects.patientservice.models.Patient;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Patientmapper {
     public static PatientResponseDto toDto(Patient patient){
         PatientResponseDto patientResponseDto = new PatientResponseDto();
+        patientResponseDto.setId(patient.getId());
         patientResponseDto.setName(patient.getName());
         patientResponseDto.setEmail(patient.getEmail());
         patientResponseDto.setAddress(patient.getAddress());
@@ -17,6 +19,7 @@ public class Patientmapper {
     }
     public static Patient toPatient(PatientRequestDto patientRequestDto){
         Patient patient = new Patient();
+
         patient.setName(patientRequestDto.getName());
         patient.setEmail(patientRequestDto.getEmail());
         patient.setAddress(patientRequestDto.getAddress());
