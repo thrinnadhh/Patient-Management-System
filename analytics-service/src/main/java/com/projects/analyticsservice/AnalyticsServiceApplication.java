@@ -1,13 +1,13 @@
-package com.projects.billingservice;
+package com.projects.analyticsservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BillingServiceApplication {
+public class AnalyticsServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BillingServiceApplication.class, args);
+        SpringApplication.run(AnalyticsServiceApplication.class, args);
     }
 
 }

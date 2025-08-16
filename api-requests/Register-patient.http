@@ -3,11 +3,11 @@ POST http://localhost:4000/patients
 Content-Type: application/json
 
 {
-  "name": "John Kafka Test2",
-  "email": "test@gamil.com",
-  "address": "123 main street22",
-  "dateOfBirth": "1995-09-09",
-  "registeredDate": "2024-11-28"
+  "name": "jhon doe kafka final_test",
+  "email": "jhonedoekafkafinal_test@gamil.com",
+  "address": "123 main reet22",
+  "dateOfBirth": "1995-10-09",
+  "registeredDate": "2025-11-28"
 }
 
 

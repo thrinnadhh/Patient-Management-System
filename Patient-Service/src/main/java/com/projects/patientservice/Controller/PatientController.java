@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.UUID;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
+@Slf4j
 @RestController
 @RequestMapping("patients")
 @Tag(name = "patient", description = "Patient api docs")
@@ -42,7 +44,9 @@ public class PatientController {
     @PostMapping()
     @Operation(summary = "To create the patient")
     public ResponseEntity<PatientResponseDto> registerPatient(@Valid @RequestBody PatientRequestDto patientRequestDto){
+        log.info("Registering patient with email in controller: {}", patientRequestDto.getEmail());
         PatientResponseDto patientResponseDto = patientService.RegisterPatient(patientRequestDto);
+        log.info("Patient registered successfully with id: {}", patientResponseDto.getId());
         return ResponseEntity.ok().body(patientResponseDto);
     }
 

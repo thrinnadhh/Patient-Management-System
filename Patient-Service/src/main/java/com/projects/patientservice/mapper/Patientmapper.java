@@ -5,7 +5,6 @@ import com.projects.patientservice.DTOs.PatientResponseDto;
 import com.projects.patientservice.models.Patient;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class Patientmapper {
     public static PatientResponseDto toDto(Patient patient){

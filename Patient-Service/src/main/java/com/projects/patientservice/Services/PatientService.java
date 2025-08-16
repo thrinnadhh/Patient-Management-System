@@ -5,9 +5,11 @@ import com.projects.patientservice.DTOs.PatientResponseDto;
 import com.projects.patientservice.Exception.EmailAlreadyExistsException;
 import com.projects.patientservice.Exception.PatientNotFoundException;
 import com.projects.patientservice.Repository.PatientRepository;
+import com.projects.patientservice.grpc.BillingServiceGrpcClient;
+import com.projects.patientservice.kafka.PatientProducer;
 import com.projects.patientservice.mapper.Patientmapper;
 import com.projects.patientservice.models.Patient;
-import org.apache.coyote.Request;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,24 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
+    private final BillingServiceGrpcClient billingServiceGrpcClient;
+    private final PatientProducer patientProducer;
 
     @Autowired
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository,
+                          BillingServiceGrpcClient billingServiceGrpcClient,
+                          PatientProducer patientProducer) {
         this.patientRepository = patientRepository;
+        this.billingServiceGrpcClient = billingServiceGrpcClient;
+        this.patientProducer = patientProducer;
+
+
     }
+
     public List<PatientResponseDto> getPatients(){
 //        System.out.println("#######################################3333");
         System.out.println("Fetching all patients");
@@ -47,6 +59,13 @@ public class PatientService {
         }
         Patient patientRegistration = Patientmapper.toPatient(patientRequestDto);
         patientRepository.save(patientRegistration);
+        log.info("Patient registered successfully with id: {}", patientRegistration.getId());
+        billingServiceGrpcClient.createBillingAccount(patientRegistration.getId().toString(),
+                patientRegistration.getName(),
+                patientRegistration.getEmail());
+//        kafka
+        patientProducer.sendEvent(patientRegistration);
+
       return Patientmapper.toDto(patientRegistration);
     }
 
