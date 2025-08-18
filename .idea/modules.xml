@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/billing-service/Billing-Service.iml" filepath="$PROJECT_DIR$/billing-service/Billing-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Patient Management.iml" filepath="$PROJECT_DIR$/Patient Management.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Patient-Service/Patient-Service.iml" filepath="$PROJECT_DIR$/Patient-Service/Patient-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/analytics-service/analytics-service.iml" filepath="$PROJECT_DIR$/analytics-service/analytics-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Patient-Service/patient-service.iml" filepath="$PROJECT_DIR$/Patient-Service/patient-service.iml" />
     </modules>
   </component>
 </project>
